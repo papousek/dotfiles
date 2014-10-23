@@ -59,3 +59,8 @@ execute pathogen#infect()
 
 " Syntastic
 let g:syntastic_enable_perl_checker = 1
+
+" Buffers - explore/next/previous: Alt-F12, F12, Shift-F12.
+nnoremap <silent> <M-F12> :BufExplorer<CR>
+nnoremap <silent> <F12> :bn<CR>
+nnoremap <silent> <S-F12> :bp<CR>
