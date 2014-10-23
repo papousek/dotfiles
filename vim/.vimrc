@@ -64,3 +64,11 @@ let g:syntastic_enable_perl_checker = 1
 nnoremap <silent> <M-F12> :BufExplorer<CR>
 nnoremap <silent> <F12> :bn<CR>
 nnoremap <silent> <S-F12> :bp<CR>
+
+" tab navigation
+nnoremap <C-Left>  :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-Left> <Esc>  :tabprevious<CR>i
+inoremap <C-Right> <Esc> :tabnext<CR>i
+inoremap <C-t> <Esc>     :tabnew<CR>
