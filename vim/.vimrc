@@ -60,11 +60,6 @@ execute pathogen#infect()
 " Syntastic
 let g:syntastic_enable_perl_checker = 1
 
-" Buffers - explore/next/previous: Alt-F12, F12, Shift-F12.
-nnoremap <silent> <M-F12> :BufExplorer<CR>
-nnoremap <silent> <F12> :bn<CR>
-nnoremap <silent> <S-F12> :bp<CR>
-
 " tab navigation
 nnoremap <C-Left>  :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
@@ -72,3 +67,7 @@ nnoremap <C-t>     :tabnew<CR>
 inoremap <C-Left> <Esc>  :tabprevious<CR>i
 inoremap <C-Right> <Esc> :tabnext<CR>i
 inoremap <C-t> <Esc>     :tabnew<CR>
+
+" nerdtree
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
