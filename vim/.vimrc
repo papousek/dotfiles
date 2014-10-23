@@ -71,3 +71,6 @@ inoremap <C-t> <Esc>     :tabnew<CR>
 " nerdtree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Vim flakes8
+let g:flake8_ignore="E501"
