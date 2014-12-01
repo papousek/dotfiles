@@ -1,3 +1,5 @@
+install: install-vim install-i3
+
 install-vim:
 	cp vim/.vimrc ~/.vimrc;
 	mkdir -p ~/.vim;
@@ -8,3 +10,8 @@ install-vim:
 	git clone https://github.com/jimenezrick/vimerl.git ~/.vim/bundle/erl.vim
 	git clone https://github.com/jlanzarotta/bufexplorer.git ~/.vim/bundle/bufexplorer.vim
 	git clone https://github.com/scrooloose/nerdtree.git  ~/.vim/bundle/nerdtree.vim
+
+install-i3:
+	mkdir -p ~/.i3;
+	cp -r i3/i3/* ~/.i3;
+	cp i3/.i3status.conf ~/;
