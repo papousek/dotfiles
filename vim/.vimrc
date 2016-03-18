@@ -21,9 +21,10 @@ set notimeout
 set nottimeout
 set autowrite
 set gdefault
-
+set number
 set nobackup
 set noswapfile
+set ruler
 
 syntax on
 filetype plugin on
@@ -58,19 +59,36 @@ let g:ctrlp_working_path_mode = 'ra'
 execute pathogen#infect()
 
 " Syntastic
-let g:syntastic_enable_perl_checker = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E225,E123,E128'
+let g:syntastic_python_python_exec = '/usr/local/bin/python3.5'
+let g:syntastic_loc_list_height=5
 
 " tab navigation
-nnoremap <C-Left>  :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-j>  :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
 nnoremap <C-t>     :tabnew<CR>
-inoremap <C-Left> <Esc>  :tabprevious<CR>i
-inoremap <C-Right> <Esc> :tabnext<CR>i
+inoremap <C-j> <Esc>  :tabprevious<CR>i
+inoremap <C-l> <Esc> :tabnext<CR>i
 inoremap <C-t> <Esc>     :tabnew<CR>
 
 " nerdtree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" Vim flakes8
-let g:flake8_ignore="E501"
+nnoremap <F5> :GundoToggle<CR>
+
+" ctags
+map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Python mode
+let g:pymode_rope=0
