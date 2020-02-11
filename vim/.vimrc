@@ -49,46 +49,137 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Grep
 map <C-g> :!git grep <C-r><C-w> *<cr>
 
-" CtrlP
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+
+" ...
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+Plugin 'tmhedberg/SimpylFold'
+
+let g:SimpylFold_docstring_preview=1
+
+
+"Plugin 'vim-scripts/indentpython.vim'
+
+set encoding=utf-8
+
+"Plugin 'Valloric/YouCompleteMe'
+
+"let g:ycm_server_keep_logfiles = 1
+"let g:ycm_server_log_level = 'debug'
+"let g:ycm_use_clangd = 0
+
+"let g:ycm_autoclose_preview_window_after_completion=1
+"let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+Plugin 'cjrh/vim-conda'
+
+Plugin 'preservim/nerdcommenter'
+
+Plugin 'xolox/vim-misc'
+
+Plugin 'vim-syntastic/syntastic'
+
+Plugin 'nvie/vim-flake8'
+
+let python_highlight_all=1
+syntax on
+
+"Plugin 'jnurmine/Zenburn'
+
+"Plugin 'altercation/vim-colors-solarized'
+
+"if has('gui_running')
+  "set background=dark
+  "colorscheme solarized
+"else
+  "colorscheme zenburn
+"endif
+
+Plugin 'kien/ctrlp.vim'
+
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
-" Pathogen
-execute pathogen#infect()
+Plugin 'scrooloose/nerdtree'
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501,E225,E123,E128'
-let g:syntastic_python_python_exec = '/usr/local/bin/python3.5'
-let g:syntastic_loc_list_height=5
-
-" tab navigation
-nnoremap <C-j>  :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-j> <Esc>  :tabprevious<CR>i
-inoremap <C-l> <Esc> :tabnext<CR>i
-inoremap <C-t> <Esc>     :tabnew<CR>
-
-" nerdtree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+Plugin 'bling/vim-airline'
+
+Plugin 'vim-airline/vim-airline-themes'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+Plugin 'sjl/gundo.vim'
+
+Plugin 'davidhalter/jedi-vim'
+
+let g:jedi#completions_enabled = 0
+let g:jedi#show_call_signatures = "2"
+
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+
 nnoremap <F5> :GundoToggle<CR>
 
-" ctags
-map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+set clipboard=unnamed
 
-" Python mode
-let g:pymode_rope=0
+" tab navigation
+nnoremap <C-j> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-t> :tabnew<CR>
+inoremap <C-j> <Esc>:tabprevious<CR>i
+inoremap <C-l> <Esc>:tabnext<CR>i
+inoremap <C-t> <Esc>:tabnew<CR>
+
+" switch buffer
+nnoremap P :b#<CR>
+
+" Exit
+nnoremap Q  :q<CR>
+inoremap Q <Esc> :q<CR>i
+
+" python indent
+
+au Filetype python
+    \ set tabstop=4
+    \ | set softtabstop=4
+    \ | set shiftwidth=4
+    \ | set textwidth=79
+    \ | set expandtab
+    \ | set autoindent
+    \ | set fileformat=unix
