@@ -5,7 +5,8 @@ install-vim:
 	mkdir -p ~/.vim;
 	cp -r vim/vim/* ~/.vim;
 	rm -rf ~/.vim/bundle;
-	mkdir -p ~/.vim/
+	mkdir -p ~/.vim/bundle;
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 install-i3:
 	mkdir -p ~/.i3;
