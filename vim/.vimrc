@@ -1,3 +1,4 @@
+let mapleader=","
 set nocompatible
 set wildignore=*~,*.o,*.log,*.pyc
 set ignorecase smartcase
@@ -88,44 +89,19 @@ Plugin 'vim-scripts/indentpython.vim'
 
 set encoding=utf-8
 
-"Plugin 'Valloric/YouCompleteMe'
-
-"let g:ycm_server_keep_logfiles = 1
-"let g:ycm_server_log_level = 'debug'
-"let g:ycm_use_clangd = 0
-
-"let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 Plugin 'cjrh/vim-conda'
 
 Plugin 'preservim/nerdcommenter'
 
 Plugin 'xolox/vim-misc'
-"Plugin 'dense-analysis/ale'
-
-"let g:airline#extensions#ale#enabled = 1
 
 Plugin 'nvie/vim-flake8'
 
 let python_highlight_all=1
 syntax on
 
-"Plugin 'jnurmine/Zenburn'
-
-"Plugin 'altercation/vim-colors-solarized'
-
-"if has('gui_running')
-  "set background=dark
-  "colorscheme solarized
-"else
-  "colorscheme zenburn
-"endif
-
 Plugin 'kien/ctrlp.vim'
 
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
@@ -140,9 +116,8 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
-
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 Plugin 'sjl/gundo.vim'
 
@@ -150,6 +125,14 @@ Plugin 'davidhalter/jedi-vim'
 
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = "2"
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_stubs_command = "<leader>s"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "<leader>k"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 
 if has('python3')
     let g:gundo_prefer_python3 = 1
@@ -165,6 +148,45 @@ let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_python_checker_args='--ignore=E402,E501,E111,E114,E126'
 let g:syntastic_python_flake8_args = "--max-line-length=160"
 
+Plugin 'majutsushi/tagbar'
+
+nmap <F8> :TagbarToggle<CR><C-w>w
+
+Plugin 'easymotion/vim-easymotion'
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+let g:EasyMotion_enter_jump_first = 1
+
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'nathanaelkane/vim-indent-guides'
+
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
+let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+
+Plugin 'reedes/vim-colors-pencil'
+
+Plugin 'sjl/badwolf'
+
+colorscheme badwolf
+set background=dark
+
+Plugin 'frazrepo/vim-rainbow'
+
+let g:rainbow_active = 1
+
+Plugin 'terryma/vim-multiple-cursors' " TODO
+
+Plugin 'tpope/vim-surround' " TODO
+
+Plugin 'ervandew/supertab'
 
 " tab navigation
 nnoremap <C-j> :tabprevious<CR>
@@ -173,6 +195,14 @@ nnoremap <C-t> :tabnew<CR>
 inoremap <C-j> <Esc>:tabprevious<CR>i
 inoremap <C-l> <Esc>:tabnext<CR>i
 inoremap <C-t> <Esc>:tabnew<CR>
+
+" Panels
+nnoremap <C-v> <C-w>v
+nnoremap <C-h> <C-w>S
+nnoremap I <C-w>k
+nnoremap K <C-w>j
+nnoremap L <C-w>l
+nnoremap J <C-w>h
 
 " switch buffer
 nnoremap P :b#<CR>
