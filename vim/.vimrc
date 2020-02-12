@@ -84,7 +84,7 @@ Plugin 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
 
 
-"Plugin 'vim-scripts/indentpython.vim'
+Plugin 'vim-scripts/indentpython.vim'
 
 set encoding=utf-8
 
@@ -103,8 +103,9 @@ Plugin 'cjrh/vim-conda'
 Plugin 'preservim/nerdcommenter'
 
 Plugin 'xolox/vim-misc'
+"Plugin 'dense-analysis/ale'
 
-Plugin 'vim-syntastic/syntastic'
+"let g:airline#extensions#ale#enabled = 1
 
 Plugin 'nvie/vim-flake8'
 
@@ -158,6 +159,13 @@ nnoremap <F5> :GundoToggle<CR>
 
 set clipboard=unnamed
 
+Plugin 'scrooloose/syntastic'
+
+let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_python_checker_args='--ignore=E402,E501,E111,E114,E126'
+let g:syntastic_python_flake8_args = "--max-line-length=160"
+
+
 " tab navigation
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
@@ -183,3 +191,5 @@ au Filetype python
     \ | set expandtab
     \ | set autoindent
     \ | set fileformat=unix
+
+set textwidth=0 wrapmargin=0
